@@ -5,32 +5,34 @@ import com.github.javafaker.Faker;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Random;
 
 public class DataGenerator {
+    private DataGenerator() {
+    }
 
-        private Faker faker;
-        private LocalDate today = LocalDate.now();
-        private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
-        public String createDate(int plusDays) {
-            LocalDate newDate = today.plusDays(plusDays);
-            return formatter.format(newDate);
-        }
-
-        public String getCity() {
-            String[] myCityList = new String[]{"Абакан", "Анадырь", "Архангельск", "Астрахань", "Барнаул", "Владикавказ", "Горно-Алтайск", "Йошкар-Ола", "Казань", "Калининград", "Калуга", "Краснодар", "Магас", "Махачкала", "Нарьян-Мар", "Салехард", "Самара", "Саранск", "Саратов", "Хабаровск", "Ханты-Мансийск", "Южно-Сахалинск", "Великий Новгород", "Владивосток", "Владимир", "Вологда", "Рязань", "Биробиджан", "Чебоксары", "Москва", "Санкт-Петербург", "Ульяновск", "Симферополь", "Ростов-на-Дону"};
-            int city = (int) Math.floor(Math.random() * myCityList.length);
-            return myCityList[city];
+    public static class Registration {
+        private Registration() {
         }
 
 
-        public String getName() {
-            faker = new Faker(new Locale("ru"));
-            return (faker.name().lastName()+(" ")+faker.name().firstName());
+        public static RegistrationCard generate(String locale) {
+            Faker faker = new Faker(new Locale("ru"));
+            return new RegistrationCard(
+                    faker.address().city(),
+                    faker.name().lastName() + " " + faker.name().firstName(),
+                    faker.numerify("+7##########"));
         }
 
-        public String getPhone() {
-            faker = new Faker(new Locale("ru"));
-            return faker.phoneNumber().phoneNumber();
+        public static String generateDate(int days) {
+            return LocalDate.now().plusDays(days).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         }
+
+        public static String citiesTrue() {
+            Random random = new Random();
+            int rand = random.nextInt(5);
+            String cities[] = {"Москва", "Санкт-Петербург", "Челябинск", "Екатеринбург", "Казань"};
+            return cities[rand];
+        }
+    }
 }
