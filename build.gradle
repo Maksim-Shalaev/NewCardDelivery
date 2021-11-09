@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.freefair.lombok' version '5.1.0'
 }
 
 group 'ru.netology'
@@ -16,11 +17,12 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.projectlombok:lombok:1.18.18'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-    compile group: 'com.github.javafaker', name: 'javafaker', version: '0.15'
-    testImplementation 'com.codeborne:selenide:5.19.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.2'
+    testImplementation 'com.codeborne:selenide:5.3.1'
+    implementation 'com.github.javafaker:javafaker:1.0.1'
+    testCompile 'org.slf4j:slf4j-simple:1.7.23'
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
 
 test {
