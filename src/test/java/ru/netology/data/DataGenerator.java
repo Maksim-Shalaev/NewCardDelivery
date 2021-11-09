@@ -2,17 +2,19 @@ package ru.netology.data;
 
 import com.github.javafaker.Faker;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 public class DataGenerator {
     private DataGenerator() {
     }
 
     public static String getCity() {
-        List<String> cityList = Arrays.asList("Абакан", "Барнаул", "Нижний Новгород", "Ставрополь", "Ульяновск", "Кострома");
+        List<String> cityList = Arrays.asList("Абакан", "Барнаул", "Москва", "Ставрополь", "Самара", "Кострома");
         Random random = new Random();
         String randomElement = cityList.get(random.nextInt(cityList.size()));
         return randomElement;
